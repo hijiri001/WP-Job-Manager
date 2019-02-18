@@ -197,10 +197,11 @@ class WP_Job_Manager_Writepanels {
 			<div id="<?php echo esc_attr( $taxonomy_name ); ?>-all" class="editor-post-taxonomies__hierarchical-terms-list">
 				<ul id="<?php echo esc_attr( $taxonomy_name ); ?>checklist" class="list:<?php echo esc_attr( $taxonomy_name ); ?> categorychecklist form-no-clear">
 					<?php
+					$employment_types = wpjm_job_listing_employment_type_options();
 					foreach ( $terms as $term ) {
 						$id = $taxonomy_name . '-' . $term->term_id;
 						echo '<li id="' . esc_attr( $id ) . '"><label class="selectit">';
-						echo '<input type="radio" id="in-' . esc_attr( $id ) . '" name="' . esc_attr( $field_name ) . '" ' . checked( $current, $term->term_id, false ) . ' value="' . esc_attr( $term->term_id ) . '" />' . esc_attr( $term->name ) . '<br />';
+						echo '<input type="radio" id="in-' . esc_attr( $id ) . '" name="' . esc_attr( $field_name ) . '" ' . checked( $current, $term->term_id, false ) . ' value="' . esc_attr( $term->term_id ) . '" />' . esc_html( $employment_types[get_term_meta($term->term_id, 'employment_type', true)] ) . '<br />';
 						echo '</label></li>';
 					}
 					?>
